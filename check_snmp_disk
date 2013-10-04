@@ -113,21 +113,21 @@ my $result_hash = $session->var_bind_list();
 $disk_size = $result_hash->{$size_oid};
 $disk_used = $result_hash->{$used_oid};
 
-my $value = ceil($disk_used/$disk_size);
+my $value = ceil(($disk_used/$disk_size)*100);
 
 $session->close();
 
 if($value > $np->opts->warning and $value < $np->opts->critical) {
-    printf("SNMP WARN: %s\n", $value);
+    printf("SNMP WARN: %s%\n", $value);
     exit(WARNING);
 }
 
 if($value > $np->opts->critical) {
-    printf("SNMP CRIT: %s\n", $value);
+    printf("SNMP CRIT: %s%\n", $value);
     exit(CRITICAL);
 }
 
-printf("SNMP OK: %s\n", $value);
+printf("SNMP OK: %s%\n", $value);
 exit(OK);
 
 sub table_callback
