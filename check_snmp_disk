@@ -90,7 +90,7 @@ $session = undef;
 # Look for a matching disk
 for my $oid (oid_lex_sort(keys %table)) {
     if($table{$oid} =~ /$regex/) {
-        $diskID = substr($oid, -1, 1);
+        $diskID = $1 if $oid =~ /\.([0-9]+)$/;
         last;
     }
 }
