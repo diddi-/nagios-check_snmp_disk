@@ -122,7 +122,7 @@ if($value > $np->opts->warning and $value < $np->opts->critical) {
     exit(WARNING);
 }
 
-if($value > $np->opts->critical) {
+if($value >= $np->opts->critical) {
     printf("SNMP CRIT: %s%%\n", $value);
     exit(CRITICAL);
 }
