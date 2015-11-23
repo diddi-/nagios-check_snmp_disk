@@ -138,7 +138,7 @@ sub table_callback
 
    if (!defined $list) {
       printf "ERROR: %s\n", $session->error();
-      return;
+      exit(UNKNOWN);
    }
 
    # Loop through each of the OIDs in the response and assign
@@ -169,6 +169,7 @@ sub table_callback
 
    if (!defined $result) {
       printf "ERROR: %s.\n", $session->error();
+      exit(UNKNOWN);
    }
 
    return;
